@@ -1,0 +1,26 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+</head>
+<body>
+    <div id="content"></div>
+    <button>click</button>
+    <script>
+        const chatSocket = new WebSocket('ws://192.168.100.115:8888/ws/api/traffic');
+        chatSocket.onmessage = function(e) {
+            console.log(e);
+            document.getElementById("content").innerHTML = e.data
+        };
+        document.addEventListener('click', (e) => {
+            chatSocket.send(JSON.stringify({
+                "name":"False",
+            }))
+            
+            
+        })
+    </script>
+</body>
+</html>
